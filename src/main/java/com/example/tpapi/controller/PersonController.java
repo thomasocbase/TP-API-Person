@@ -27,14 +27,14 @@ public class PersonController {
         return personService.createPerson(person);
     }
 
+    @PutMapping("/person/{id}")
+    public boolean updatePerson(@PathVariable("id") int id, @RequestBody Person person) {
+        return personService.updatePerson(id, person);
+    }
+
     @DeleteMapping("/person/{id}")
     public boolean deletePerson(@PathVariable("id") int id) {
         return personService.deletePerson(id);
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return personService.test();
     }
 
 }
