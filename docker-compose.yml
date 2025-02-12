@@ -26,7 +26,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
 
   app:
-    build: .
+    image: openjdk:21-bookworm
     container_name: springboot-app
     ports:
       - "8080:8080"
@@ -34,6 +34,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/tp_api_person
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
+    volumes:
+      - ./target/TP-API-0.0.1-SNAPSHOT.jar:/app/app.jar
+      - ./wait-for-db.sh:/app/wait-for-db.sh
+    working_dir: /app
+    entrypoint: ["/bin/sh", "-c", "apt-get update && apt-get install -y netcat-openbsd && chmod +x /app/wait-for-db.sh && /app/wait-for-db.sh db 3306 -- java -jar app.jar"]
     depends_on:
       - db
 
