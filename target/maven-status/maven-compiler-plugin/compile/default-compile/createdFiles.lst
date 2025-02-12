@@ -1,0 +1,5 @@
+com\example\tpapi\controller\PersonController.class
+com\example\tpapi\repository\PersonRepository.class
+com\example\tpapi\service\PersonService.class
+com\example\tpapi\TpApiApplication.class
+com\example\tpapi\model\Person.class
